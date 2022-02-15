@@ -15,7 +15,12 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () =>
 
 //Middleware
 app.use(express.json())
+const cors = require('cors');
+app.use(cors(
+    {credentials: true, origin: true}
+));
 app.use('/api/user', authRoute)
 app.use('/api/stores', storeRoute)
+
 
 app.listen(3000, () => console.log('Servidor corriendo'))
