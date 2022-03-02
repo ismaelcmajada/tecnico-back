@@ -4,7 +4,9 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 //Rutas
 const authRoute = require('./routes/auth')
-const storeRoute = require('./routes/stores')
+const equipoRoute = require('./routes/equipos')
+const reparacionRoute = require('./routes/reparaciones')
+const usuarioRoute = require('./routes/usuarios')
 
 dotenv.config()
 
@@ -20,7 +22,9 @@ app.use(cors(
     {credentials: true, origin: true}
 ));
 app.use('/api/user', authRoute)
-app.use('/api/stores', storeRoute)
+app.use('/api/equipos', equipoRoute)
+app.use('/api/reparaciones', reparacionRoute)
+app.use('/api/usuarios', usuarioRoute)
 
 
 app.listen(3000, () => console.log('Servidor corriendo'))
