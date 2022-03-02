@@ -1,4 +1,5 @@
 const Usuario = require('../model/User');
+const Reparacion = require('../model/Reparacion');
 
 function list(req, res) {
     Usuario.find({}, function (err, usuarios) {
@@ -25,7 +26,20 @@ function find(req, res) {
     })
 }
 
+function deleted(req, res) {
+    let id = req.params.id
+    Reparacion.find({user_id: id}).remove().exec()
+    Usuario.findByIdAndDelete(id, function(err) {
+        if (err) {
+            res.status(500).send(err.message)
+        } else {
+            res.status(204).send()
+        }
+    })
+}
+
 module.exports = {
     list,
-    find
+    find,
+    deleted
 }
